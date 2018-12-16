@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="icon" sizes="196x196" href="ninja.png">
+    <link rel="stylesheet" type="text/css" href="flexstyle.css">
+    <title>Mono Run</title>
+    <script src="libs/phaser.js"></script>
+    <script src="Boot.js"></script>
+    <script src="Preloader.js"></script>
+    <script src="StartMenu.js"></script>
+    <script src="Game.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #A54900;
+        }
+
+        #warning-message { display: none; }
+        @media only screen and (orientation:portrait){
+            #gameContainer { display:none; }
+            #filler { display:none; }
+            #warning-message { display:block; }
+        }
+        @media only screen and (orientation:landscape){
+            #warning-message { display:none; }
+        }
+        .msg {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="fixed" id="gameContainer"></div>
+        <div class="flex-item" id="filler">Dynamically sized</div>
+    </div>
+    <div id="warning-message" class="msg">
+        <center>
+            <br> <br> <br> <br>
+            Oops!
+            <br> <br> <br>
+            <div class="img">
+                <img src="images/index_rotate.png" alt="[Preview not available]" width="171" height="100" />
+            </div>
+                <br> <br>
+                Please rotate to <b>left</b> or <b>right</b>
+                <br> <br>
+                &#x263A
+        </center>
+    </div>
+    <script type="text/javascript">
+    window.onload = function() {
+        var game = new Phaser.Game(960, 640, Phaser.CANVAS, 'gameContainer'); // 960, 640
+
+        game.state.add('Boot', MonoRun.Boot);
+        game.state.add('Preloader', MonoRun.Preloader);
+        game.state.add('StartMenu', MonoRun.StartMenu);
+        game.state.add('Game', MonoRun.Game);
+        game.state.start('Boot');
+    }
+    </script>
+    <script src="libs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#filler').click(function () { 
+            $(this).load('https://yobo.me'); 
+        }); 
+    });
+    </script>
+</body>
+
+</html>

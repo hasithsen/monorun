@@ -1,0 +1,24 @@
+div {
+    color: #fff;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    padding: 0px;
+}
+
+.container{
+    display: flex;
+
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+.fixed{
+    min-width: 480px;
+    min-height: 320px;
+
+    flex-shrink: 0; /* default 1 */
+    flex-basis: content;
+}
+.flex-item{
+    flex-grow: 0;
+
+    flex-basis: content;
+}
